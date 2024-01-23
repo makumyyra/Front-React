@@ -1,4 +1,7 @@
-# React + Vite
+# React + Vite projects Spring 2024
+Schoolwork for Haaga-Helia, updating repository
+
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
