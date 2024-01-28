@@ -1,5 +1,7 @@
 # React + Vite projects Spring 2024
-Schoolwork for Haaga-Helia, updating repository
+Schoolwork for Haaga-Helia
+
+### updating repository
 
 ## React + Vite
 
