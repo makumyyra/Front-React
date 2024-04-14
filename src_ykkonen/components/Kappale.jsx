@@ -23,11 +23,11 @@ function Kappale() {
     if (error.length === 0) {
         return (<p>{error}</p>)
     }
-    
+
     return (
         <>
             {title}<br />
-            <audio controls autoplay>
+            <audio controls autoPlay>
                 <source src={link} type='audio/mpeg' />
             </audio>
         </>

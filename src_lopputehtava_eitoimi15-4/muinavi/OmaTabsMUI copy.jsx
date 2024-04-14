@@ -5,13 +5,18 @@ import EditIcon from '@mui/icons-material/Edit';
 import MenuIcon from '@mui/icons-material/Menu';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-import AvatarMUI from '../muicomponents/AvatarMUI';
+import Ajopaivakirja from '../components/Ajopaivakirja';
+import Reseptit from '../components/Reseptit';
+import OmalomakeMUI from '../muicomponents/OmalomakeMUI';
+import Arvosanalomake from '../components/Arvosanalomake';
+import OmakorttiMUI from '../muicomponents/OmakorttiMUI';
 
+import OmaMenuMUI from './OmaMenuMUI';
 //import { Outlet } from '@mui/icons-material';
 import { Link, Outlet } from 'react-router-dom';
 
 
-function OmaTabsMUI({ data, nimet }) {
+function OmaTabsMUI({ kortti, nimet }) {
 
     const [value, setValue] = useState(4);
 
@@ -23,14 +28,9 @@ function OmaTabsMUI({ data, nimet }) {
         <Box>
             <AppBar position='static'>
                 <Tabs value={value} onChange={muuta} textColor='inherit' variant='standard'>
-                    <AvatarMUI />
-                    <Tab label='fdgdfggfdfgd (Tehtävä 2)' icon={<DirectionsCarIcon />} component={Link} to='/' />
-                    <Tab label='Arviointi (Tehtävä 3)' icon={<EditIcon />} component={Link} to='nimet' />
-                    <Tab label='Ruokahaku (Tehtävä 4)' icon={<FastfoodIcon />} component={Link} to='nimilomake' />
-                    <Tab label='Kirjat' icon={<FastfoodIcon />} component={Link} to='kirjat' />
-                    <Tab label='Ajastin' icon={<FastfoodIcon />} component={Link} to='timer' />
-
-
+                    <Tab label='kortti' icon={<DirectionsCarIcon />} component={Link} to='/' />
+                    <Tab label='nimilomake (Tehtävä 3)' icon={<EditIcon />} component={Link} to='kortti' />
+                    <Tab label='nimet (Tehtävä 5)' icon={<EditIcon />} component={Link} to='nimet' />
                 </Tabs>
             </AppBar>
             <Outlet />

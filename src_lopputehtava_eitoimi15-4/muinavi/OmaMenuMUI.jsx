@@ -3,7 +3,7 @@ import { Box, AppBar, Toolbar, IconButton, Typography, Menu, MenuItem, ListItemT
 import MenuIcon from '@mui/icons-material/Menu';
 import InfoIcon from '@mui/icons-material/Info';
 import PersonIcon from '@mui/icons-material/Person';
-import OmaDrawerMUI from './OmaDrawerMUI';
+//import OmaDrawerMUI from './OmaDrawerMUI';
 
 function OmaMenuMUI() {
 
@@ -42,7 +42,7 @@ function OmaMenuMUI() {
 
             <Toolbar>
                 <IconButton color='inherit' onClick={menuOpen}><MenuIcon /></IconButton> {menu}
-                <IconButton color='inherit'>{<OmaDrawerMUI />}</IconButton>
+                {/*  <IconButton color='inherit'>{<OmaDrawerMUI />}</IconButton> */}
             </Toolbar>
 
 

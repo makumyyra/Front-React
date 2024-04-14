@@ -1,21 +1,66 @@
-//import MatkakorttiMUI from './components/MatkakorttiMUI';
-//import MatkalistaMUI from './components/MatkalistaMUI';
-//import MatkalomakeMUI from './components/MatkalomakeMUI';
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import { CssBaseline } from '@mui/material';
+import { CssBaseline, Typography } from '@mui/material';
 import { Box } from '@mui/material';
-import MatkakorttiMUI from './muicomponents/MatkakorttiMUI';
-import MatkalistaMUI from './muicomponents/MatkalistaMUI';
-import MatkalomakeMUI from './muicomponents/MatkalomakeMUI';
-import OmakorttiMUI from './muicomponents/OmakorttiMUI';
-import TabMUI from './muinavi/TabMUI';
-import DrawerMUI from './muinavi/DrawerMUI';
-import OmasliderMUI from './muicomponents/OmasliderMUI'
-import Ajopaivakirja from './components/Ajopaivakirja';
-import Arvosanalomake from './components/Arvosanalomake';
-import Reseptit from './components/Reseptit';
+import Nimilomake from './components/Nimilomake';
+import NimiHaku from './components/NimiHaku';
+import Nimet from './components/Nimet';
 import OmaTabsMUI from './muinavi/OmaTabsMUI';
+import KirjaMUI from "./muicomponents/KirjaMUI";
+import Timer from "./muicomponents/TimerMUI";
+import { createBrowserRouter, RouterProvider, useRouteError, isRouteErrorResponse, Link } from "react-router-dom";
 
+import { pink, blue, green, yellow, amber } from '@mui/material/colors';
+
+
+const nimet = [
+  {
+    id: 1,
+    nimi: "Alma",
+    ika: 10,
+    parasKirja: "Risto Räppääjä"
+  },
+  {
+    id: 2,
+    nimi: "Suvi",
+    ika: 41,
+    parasKirja: "The Smoke Jumper"
+  },
+  {
+    id: 3,
+    nimi: "Teemu",
+    ika: 42,
+    parasKirja: "Kolme kitarasointua"
+  },
+  {
+    id: 4,
+    nimi: "Mehiläinen",
+    ika: 1,
+    parasKirja: "Kasvinhoitaja",
+  }
+];
+
+const kirjat = [
+  {
+    id: 1, otsikko: 'Risto Räppääjä ja viimeinen tötterö', sivuja: '96',
+    picture: 'kuvat/rr1.jpg'
+  },
+  {
+    id: 2, otsikko: 'RR2', sivuja: '102',
+    picture: 'kuvat/rr2.jpg'
+  },
+  {
+    id: 3, otsikko: 'RR3', sivuja: '115',
+    picture: 'kuvat/rr3.jpg'
+  },
+  {
+    id: 4, otsikko: 'Heppa', sivuja: '235',
+    picture: 'kuvat/hevoset1.jpg'
+  },
+  {
+    id: 5, otsikko: 'Chinchilla', sivuja: '74',
+    picture: 'kuvat/chinchilla.jpg'
+  },
+]
 
 const data = [
   {
@@ -40,73 +85,80 @@ const data = [
   },
 ]
 
+const theme = createTheme({
+  palette: {
+    //primary: { main: pink[600], contrastText: '#FFFFFF' },
+    //secondary: { main: amber[400], contrastText: '#FFFFFF' },
+    //text: { primary: green[600], secondary: blue[600] },
+  }, // Värimaailma
+  typography: {
+    //fontFamily: "'Dancing Script', cursive",
+  }, // Fontti
+});
 
-
-
-
-const mat = [
-  {
-    id: 1,
-    otsikko: 'Lomalla',
-    paiva: '26.5.2024',
-    paikka: 'Lohja',
-    saa: 'Aurinkoista, 10',
-    kuvaus: 'Lomalla Lohjalla',
-    kuva: 'kuvia/tammi.png'
-  },
-  {
-    id: 2,
-    otsikko: 'Mökillä',
-    paiva: '8.6.2024',
-    paikka: 'Savonlinna',
-    saa: 'Aurinkoinen, 21',
-    kuvaus: 'Mökillä Itä-Suomessa',
-    kuva: 'kuvia/lumme.png'
-  },
-  {
-    id: 3,
-    otsikko: 'Sukuloimassa',
-    paiva: '20.5.2024',
-    paikka: 'Vantaa',
-    saa: 'Pilvinen, 9',
-    kuvaus: 'Kahvihetki',
-    kuva: 'kuvia/kakku.jpg'
+function Error() {
+  let error = useRouteError();
+  if (isRouteErrorResponse(error)) {
+    return (
+      <Box>
+        {error.status}
+        {error.data}
+        <Link to='/'> Etusivulle</Link>
+      </Box>
+    );
   }
-];
+  return (
+    <Box>
+      {error.message}
+      <Link to='/'>Etusivulle</Link>
+    </Box>
+  );
+}
 
-const ajopvk = [{
-  rekisterinro: "XYZ-123",
-  laatija: "Risto Reipas",
-  alku: {
-    lukema: "32500",
-    lahtoaika: "13:30",
-    paiva: "2023-01-27",
-    paikka: "Ratapihantie 13, Helsinki",
+const router = createBrowserRouter([
+  {
+    element: <OmaTabsMUI data={data} />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: '/',
+        element: <Nimilomake />
+      },
+      {
+        path: 'nimet',
+        element: <Nimet nimet={nimet} />,
+      },
+      {
+        path: 'kirjat',
+        element: <KirjaMUI kirjat={kirjat} />
+      },
+      {
+        path: 'timer',
+        element: <Timer />
+      }
+
+
+    ]
   },
-  loppu: {
-    lukema: "32510",
-    loppuaika: "13:50",
-    paiva: "2023-06-27",
-    paikka: "Hietakummuntie 1, Helsinki",
-  }
-}];
+]);
 
-let tekija = 'Suvi Sammakkosuo';
-let otsikko = 'Ajopäiväkirja';
+
+
 
 function App() {
   return (
-    <Box>
-      <CssBaseline />
+    <ThemeProvider theme={theme}>
+      <Box>
+        <CssBaseline />
 
-      {/*  <MatkalomakeMUI />
-      <TabMUI matkat={mat} /> 
+        {/*  <MatkalomakeMUI />
       <OmakorttiMUI data={data} />
       <DrawerMUI />
-      <OmasliderMUI />*/}
-      <OmaTabsMUI ajopaivakirja={ajopvk} tekija={tekija} otsikko={otsikko} data={data} />
-
-    </Box>
+      <OmasliderMUI />
+      <OmaTabsMUI ajopaivakirja={ajopvk} tekija={tekija} otsikko={otsikko} data={data} />*/}
+        <RouterProvider router={router} />
+      </Box>
+    </ThemeProvider >
   );
 }
 

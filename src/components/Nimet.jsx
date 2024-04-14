@@ -1,4 +1,5 @@
-// komponentti, joka listaa (lomaketta) vastaavan objektitaulukon tiedot map metodilla. 
+//Listaa lukijat ja tietoja --> Listaa kirjat
+//"Hae kaveria"? 
 
 function Nimet({ nimilista }) {
     return (

@@ -1,4 +1,4 @@
-// lomakekomponentti, jonka tietoja talletetaan harjoitustyön osassa 4 kantaan
+// Talletetaan uusi käyttäjä
 
 import { useState } from 'react';
 

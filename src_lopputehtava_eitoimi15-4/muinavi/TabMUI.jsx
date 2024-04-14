@@ -5,9 +5,10 @@ import ListIcon from '@mui/icons-material/List';
 import HomeIcon from '@mui/icons-material/Home';
 import MatkalistaMUI from '../muicomponents/MatkalistaMUI';
 import MatkalomakeMUI from '../muicomponents/MatkalomakeMUI';
+import { Link, Outlet } from 'react-router-dom';
 
 
-function TabMUI({ /*tarvitsee komponentin matkalistaMUI:sta*/ matkat }) {
+function TabMUI({ matkat }) {
 
   const [value, setValue] = useState(0);
 
@@ -20,12 +21,13 @@ function TabMUI({ /*tarvitsee komponentin matkalistaMUI:sta*/ matkat }) {
       <AppBar position='static'> {/*tumma taustaväri; jos ei halua tummaa, poistetaan AppBar*/}
         <Tabs value={value} onChange={handleChange}
           textColor='inherit' centered> {/*variant='fullWidth'*/}
-          <Tab label='Etusivu' icon={<CreateIcon />} />
-          <Tab label='Lisää' icon={<ListIcon />} />
+          <Tab label='Listaa' icon={<CreateIcon />} component={Link} to='listaa' />
+          <Tab label='Lisää' icon={<ListIcon />} component={Link} to='lisaa' />
         </Tabs>
       </AppBar>
-      {value === 0 && <MatkalistaMUI matkat={/*ks.ylhäällä*/matkat} />}
-      {value === 1 && <MatkalomakeMUI />}
+      {/* {value === 0 && <MatkalistaMUI matkat={/*ks.ylhäällä matkat} />} */}
+      {/* {value === 1 && <MatkalomakeMUI />}   */}
+      <Outlet />
     </Box>
   );
 }

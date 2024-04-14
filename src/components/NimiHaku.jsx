@@ -1,4 +1,4 @@
-//Komponentti, jolla voidaan hakea tietoa jollakin kriteerillä edellisen kohdan objektitaulukosta
+//Hae lukijaa --> Hae KIRJAA
 
 import { useState } from "react";
 
