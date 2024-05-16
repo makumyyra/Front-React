@@ -11,7 +11,7 @@ import AvatarMUI from '../muicomponents/AvatarMUI';
 import { Link, Outlet } from 'react-router-dom';
 
 
-function OmaTabsMUI({ data, nimet }) {
+function OmaTabsMUI({ nimet }) {
 
     const [value, setValue] = useState(4);
 
@@ -24,11 +24,12 @@ function OmaTabsMUI({ data, nimet }) {
             <AppBar position='static'>
                 <Tabs value={value} onChange={muuta} textColor='inherit' variant='standard'>
                     <AvatarMUI />
-                    <Tab label='fdgdfggfdfgd (Tehtävä 2)' icon={<DirectionsCarIcon />} component={Link} to='/' />
-                    <Tab label='Arviointi (Tehtävä 3)' icon={<EditIcon />} component={Link} to='nimet' />
-                    <Tab label='Ruokahaku (Tehtävä 4)' icon={<FastfoodIcon />} component={Link} to='nimilomake' />
+                    <Tab label='Nimet' icon={<FastfoodIcon />} component={Link} to='/' />
+                    <Tab label='Omat kirjat' icon={<FastfoodIcon />} component={Link} to='omatkirjat' />
+                    <Tab label='Lisää kirja' icon={<FastfoodIcon />} component={Link} to='lisaakirja' />
                     <Tab label='Kirjat' icon={<FastfoodIcon />} component={Link} to='kirjat' />
                     <Tab label='Ajastin' icon={<FastfoodIcon />} component={Link} to='timer' />
+                    <Tab label='Avatar' icon={<FastfoodIcon />} component={Link} to='avatar'></Tab>
 
 
                 </Tabs>

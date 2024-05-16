@@ -21,7 +21,7 @@ function TabMUI({ matkat }) {
       <AppBar position='static'> {/*tumma taustaväri; jos ei halua tummaa, poistetaan AppBar*/}
         <Tabs value={value} onChange={handleChange}
           textColor='inherit' centered> {/*variant='fullWidth'*/}
-          <Tab label='Listaa' icon={<CreateIcon />} component={Link} to='listaa' />
+          <Tab label='Matkat' icon={<CreateIcon />} component={Link} to='/' />
           <Tab label='Lisää' icon={<ListIcon />} component={Link} to='lisaa' />
         </Tabs>
       </AppBar>

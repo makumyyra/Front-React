@@ -2,30 +2,11 @@ import { Grid, Card, CardHeader, CardContent, CardMedia, CardActions, IconButton
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { AccountCircle } from '@mui/icons-material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import TimerMUI from './TimerMUI';
-import { getKirjat } from '../components/kirjasto';
 
 
-//function KirjaMUI({ kirjat, omatKirjat }) {
-function KirjaMUI() {
-
-    const [kirjat, setKirjat] = useState([]);
-
-    const haeKaikkiKirjat = async () => {
-        try {
-            const response = await getKirjat();
-            setKirjat(response.data);
-
-        } catch (error) {
-            setKirjat([]);
-        }
-    }
-
-    useEffect(() => {
-        haeKaikkiKirjat();
-    }, []
-    );
+function KirjaMUI({ kirjat, omatKirjat }) {
 
     const [suosikit, setSuosikit] = useState(kirjat.map(() => false)); //jotta kaikki ei mene päälle yhtä aikaa niin pysähdytään erikseen joka korttiin
     //tällä hetkellä suositus=false
@@ -42,7 +23,7 @@ function KirjaMUI() {
     //valinnan voi uusia koska vain
 
     // Function to handle switch state change
-    //Apua haettu ChatGPT 15.4. klo 18:05, koska itse en saanut tätä toimimaan kunnolla -->
+    //ChatGPT 15.4. klo 18:05 -->
     const handleSwitchChange = (index, newState) => {
         setBookStates(prevStates => {
             const newStates = [...prevStates];
@@ -88,29 +69,25 @@ function KirjaMUI() {
             <typography>Total Time: {formatTotalTime(totalTime)}</typography>
 
             <Grid container spacing={2} sx={{ marginTop: 3, marginLeft: 1 }}>
-                {kirjat.map((kirja, index) => {
+                {kirjat.map((kuva, index) => {
                     return (<Slide
                         direction="down"
                         in={true}
                         mountOnEnter
                         unmountOnExit
-                        timeout={600 * index}>
-                        <Grid item key={kirja.id}>
+                        timeout={800 * index}>
+                        <Grid item key={kuva.id}>
                             <Card sx={{ width: 200, margin: 2 }}>
                                 <CardContent>
-                                    {kirja.picture ?
+                                    {kuva.picture ?
                                         <CardMedia sx={{ height: 'auto', width: 'auto', maxWidth: 180 }}
                                             component="img"
-                                            image={'http://localhost:8080/download/' + kirja.picture}
-                                            alt={kirja.otsikko} />
+                                            image={kuva.picture}
+                                            alt={kuva.otsikko} />
                                         :
                                         <Typography sx={{ height: 200, width: 250 }}>Ei kuvaa</Typography>
                                     }
-                                    <CardHeader title={kirja.otsikko} />
-                                    <CardContent>
-                                        <Typography>Tekijä:<br />{kirja.kirjailija}</Typography>
-                                        <Typography>Vuosi: {kirja.vuosi}</Typography>
-                                    </CardContent>
+                                    <CardHeader title={kuva.otsikko} />
                                     <Typography gutterBottom>Lisää omiin kirjoihin
                                         <Switch
                                             checked={suosikit[index]}

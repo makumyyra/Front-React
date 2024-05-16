@@ -9,8 +9,12 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import fi from 'date-fns/locale/fi';
 
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { addMatka } from '../components/matkat';
+import { useNavigate } from 'react-router-dom';
 
 function MatkalomakeMUI() {
+
+  const navigate = useNavigate();
 
   const [matka, setValues] = useState({
     otsikko: '',
@@ -61,18 +65,36 @@ function MatkalomakeMUI() {
   };
 
 
-  const lisaaMatka = () => {
+  const lisaaMatka = async () => {
 
-    setValues({
-      otsikko: '',
-      paiva: new Date(),
-      paikka: '',
-      saa: '',
-      kuvaus: '',
-      kuva: ''
-    });
+    const formData = new FormData();
+    formData.append('otsikko', matka.otsikko)
+    let paiva = matka.paiva.getFullYear() + "-" + (matka.paiva.getMonth() + 1) + "-" + matka.paiva.getDate();
+    formData.append('paiva', paiva)
+    formData.append('paikka', matka.paikka)
+    formData.append('saa', matka.saa)
+    formData.append('kuvaus', matka.kuvaus)
+    formData.append('kuva', matka.kuva)
 
-    setViesti('Lisättiin');
+    try {
+
+      const response = await addMatka(formData);
+
+      setValues({
+        otsikko: '',
+        paiva: new Date(),
+        paikka: '',
+        saa: '',
+        kuvaus: '',
+        kuva: ''
+      });
+
+
+      navigate('/');
+
+    } catch (error) {
+      setViesti('Lisäys ei onnistunut')
+    }
   }
 
   const tyhjenna = () => {
@@ -102,9 +124,6 @@ function MatkalomakeMUI() {
 
         <TextField label='Otsikko' name='otsikko' value={matka.otsikko}
           onChange={muutaSuurella} required fullWidth autoFocus />
-
-        <TextField label='Päivä' name='paiva' value={matka.paiva}
-          onChange={muuta} required fullWidth />
 
         <TextField label='Paikka' name='paikka' value={matka.paikka}
           onChange={(e) => muuta(e)} required fullWidth />

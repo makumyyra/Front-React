@@ -13,7 +13,6 @@ import { createBrowserRouter, RouterProvider, useRouteError, isRouteErrorRespons
 
 import { pink, blue, green, yellow, amber } from '@mui/material/colors';
 import AvatarMUI from "./muicomponents/AvatarMUI";
-import LisaaKirja from "./components/LisaaKirja";
 
 const nimet = [
   {
@@ -45,23 +44,23 @@ const nimet = [
 const kirjat = [
   {
     id: 1, otsikko: 'Risto Räppääjä ja viimeinen tötterö', sivuja: '96',
-    picture: 'kuvat/rr1.jpg', suosikki: false
+    picture: 'kuvat/rr1.jpg'
   },
   {
     id: 2, otsikko: 'RR2', sivuja: '102',
-    picture: 'kuvat/rr2.jpg', suosikki: true
+    picture: 'kuvat/rr2.jpg'
   },
   {
     id: 3, otsikko: 'RR3', sivuja: '115',
-    picture: 'kuvat/rr3.jpg', suosikki: true
+    picture: 'kuvat/rr3.jpg'
   },
   {
     id: 4, otsikko: 'Heppa', sivuja: '235',
-    picture: 'kuvat/hevoset1.jpg', suosikki: false
+    picture: 'kuvat/hevoset1.jpg'
   },
   {
     id: 5, otsikko: 'Chinchilla', sivuja: '74',
-    picture: 'kuvat/chinchilla.jpg', suosikki: false
+    picture: 'kuvat/chinchilla.jpg'
   },
 ]
 
@@ -118,10 +117,10 @@ const router = createBrowserRouter([
         path: 'timer',
         element: <Timer />
       },
-      {
-        path: 'lisaakirja',
-        element: <LisaaKirja />
-      },
+      /*{
+        path: 'omatkirjat',
+        element: <OmatKirjatMUI suosikit={suosikit} />
+      }*/
       {
         path: 'avatar',
         element: <AvatarMUI />

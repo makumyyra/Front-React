@@ -133,7 +133,7 @@ function Error() {
   );
 }
 
-const router = createBrowserRouter([
+/*const router = createBrowserRouter([
   {
     element: <OmaTabsMUI ajopaivakirja={ajopvk} tekija={tekija} otsikko={otsikko} data={data} />,
     errorElement: <Error />,
@@ -178,6 +178,25 @@ const router = createBrowserRouter([
     ]
   },
 ]);
+*/
+const router = createBrowserRouter([
+  {
+    element: <TabMUI matkat={mat} />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: '/',
+        element: <MatkalistaMUI matkat={mat} />
+      },
+      {
+        path: 'lisaa',
+        element: <MatkalomakeMUI />
+      }
+    ]
+
+  },
+]);
+
 
 
 
@@ -188,9 +207,9 @@ function App() {
       <Box>
         <CssBaseline />
 
-        {/*  <MatkalomakeMUI />
-      <OmakorttiMUI data={data} />
-      <DrawerMUI />
+        {/*<MatkalomakeMUI />
+        <OmakorttiMUI data={data} />
+        <DrawerMUI />
       <OmasliderMUI />
       <OmaTabsMUI ajopaivakirja={ajopvk} tekija={tekija} otsikko={otsikko} data={data} />*/}
         <RouterProvider router={router} />
